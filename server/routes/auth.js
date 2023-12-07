@@ -86,7 +86,7 @@ authRouter.post(
     "/tokenIsValid",
     async (request, response) => {
         try {
-            const token = request.header;
+            const token = request.header('x-auth-token');
             if (!token) {
                 return response.json(false);
             }

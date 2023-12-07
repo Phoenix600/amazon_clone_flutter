@@ -1,7 +1,8 @@
+import 'package:amazonclone/common/widgets/bottom_bar.dart';
 import 'package:amazonclone/constants/global_constants.dart';
+import 'package:amazonclone/features/admin/screens/admin_screen.dart';
 import 'package:amazonclone/features/auth/screen/auth_screen.dart';
 import 'package:amazonclone/features/auth/services/auth_service.dart';
-import 'package:amazonclone/features/home/home_screen.dart';
 import 'package:amazonclone/providers/user_provider.dart';
 import 'package:amazonclone/router.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,9 @@ class _MyAppState extends State<MyApp> {
           //   title: const Text("Amazon Clone"),
           // ),
           body: Provider.of<UserProvider>(context).user.token.isNotEmpty
-              ? const HomeScreen()
+              ? Provider.of<UserProvider>(context).user.type == 'user'
+                  ? const BottomBar()
+                  : const AdminScreen()
               : const AuthScreen()),
     );
   }
